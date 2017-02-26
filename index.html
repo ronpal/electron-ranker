@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Loader</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+    
+    <button id="openFile" onclick="openFile();">Open</button>
+      </body>
+
+  <script>
+    // You can also require other files to run in this process
+    var ranker = require('./ranker.js')    
+    var remote = require('electron').remote; 
+    var dialog = remote.dialog; 
+    var fs = require('fs');
+
+    function openFile () {
+
+      dialog.showOpenDialog(function (fileNames) {
+
+        console.log("jkhkjh");
+
+
+        if (fileNames === undefined) return;
+
+        var fileName = fileNames[0];
+
+        if( fileName.indexOf("\\") >= 0)
+          var path = fileName.substring(0,fileName.lastIndexOf("\\")+1);
+        else
+          var path = fileName.substring(0,fileName.lastIndexOf("/")+1);
+       
+        ranker(path);
+
+      });
+
+
+      }; 
+
+  
+  </script>
+  <form>
+
+  </form>
+
+</html>
