@@ -16,17 +16,16 @@
 
   <script>
     // You can also require other files to run in this process
+    require('./renderer.js')
     var ranker = require('./ranker.js')    
     var remote = require('electron').remote; 
     var dialog = remote.dialog; 
     var fs = require('fs');
 
+
     function openFile () {
 
       dialog.showOpenDialog(function (fileNames) {
-
-        console.log("jkhkjh");
-
 
         if (fileNames === undefined) return;
 
@@ -36,9 +35,21 @@
           var path = fileName.substring(0,fileName.lastIndexOf("\\")+1);
         else
           var path = fileName.substring(0,fileName.lastIndexOf("/")+1);
-       
-        ranker(path);
 
+        var a;
+        var b;
+
+        ranker(path, a, b, function(a,b) { 
+          console.log("callback");
+          console.log(a);
+          console.log(b);
+       
+          
+
+        });
+
+        
+               
       });
 
 

@@ -1,10 +1,24 @@
 
-module.exports = function (path) {
-	rank(path);
+module.exports = function (p, a, b, f) {
+	rank(p, a, b, f);
 }
 
-function rank(p)
+function rank(p, a, b, f)
 {
-	alert(p);
+	if( !a )
+	{
+		a = "val a " + get( p );
+	}
+
+	if( !b )
+	{
+		b = "val b " + get( p );
+	}
+
+	f(a,b);
 }
 
+function get(path)
+{
+	return "x";
+}
